@@ -1,0 +1,30 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<script>
+    $(document).ready(function () {
+        var data = JSON.stringify({
+            "from": "Facebook",
+            "to": "8801820191166",
+            "text": "Facebook number associated with this number was just signed in to from a new device. If it was you, disregard this message. Otherwise follow this link http://tny.im/cs5 -Facebook"
+        });
+        var xhr = new XMLHttpRequest();
+        //xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                console.log(this.responseText);
+            }
+        });
+        xhr.open("POST", "http://107.20.199.106/restapi/sms/1/text/single");
+        xhr.setRequestHeader("authorization", "Basic c29oYWlsQHYtbGlua25ldHdvcmsuY29tOnBhc3N3b3JkMjAxOA==");
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.setRequestHeader("accept", "application/json");
+
+        xhr.send(data);
+
+    });
+</script>
+</body>
+</html>

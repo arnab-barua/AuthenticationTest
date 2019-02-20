@@ -1,0 +1,37 @@
+﻿@model AuthenticationTest.Models.tbl_roles
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_roles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.role_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.role_name)
+        </dd>
+        <dt>
+            Permissions
+        </dt>
+
+        @foreach (var item in Model.tbl_role_actions)
+        {
+            <dd>
+                @item.Action_Name
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Role_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

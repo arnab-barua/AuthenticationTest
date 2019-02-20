@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    [hidden] {
+        display: none !important;
+    }
+    .image{
+        border:2px #000000;
+        color:#ffffff;
+        background-color:#090909;
+    }
+</style>
+
+<h2>Create</h2>
+<form method="post" id="test-form" enctype="multipart/form-data">
+    <div class="form-group">
+        <label class="btn btn-default image">
+            Browse <input type="file" name="logo" id="logo" accept="image/*" hidden>
+        </label>        
+    </div>
+    <button type="submit" class="btn btn-success">
+        <i class="fa fa-save"></i> Submit
+    </button>
+</form>
+
+<script src="~/Scripts/ImageValidator.js"></script>
+<script>
+    $('#logo').bind('change', function () {
+        ValidateImageFull(1, 1920, 1080, $(this));
+        //ValidateImageSize(1, $(this));
+        //ValidateImageDimension(1920, 1080, $(this));
+    });    
+</script>

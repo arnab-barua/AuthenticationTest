@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AuthenticationTest.Models.tbl_users>
+
+@{
+    ViewBag.Title = "AllUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AllUser</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_roles.role_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_roles.role_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.U_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.U_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.U_Id })
+        </td>
+    </tr>
+}
+
+</table>

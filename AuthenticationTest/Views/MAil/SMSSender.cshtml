@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "SMSSender";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SMSSender</h2>
+@ViewBag.msg
+<script>
+    $(document).ready(function () {
+        var data = JSON.stringify({
+            "from": "8804445653970",
+            "to": "8801820191166",
+            "text": "Test SMS."
+        });
+        var xhr = new XMLHttpRequest();
+        //xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                console.log(this.responseText);
+            }
+        });
+        xhr.open("POST", "http://107.20.199.106/restapi/sms/1/text/single");
+        //xhr.setRequestHeader("authorization", "Basic TWltdGVsOm1pbUA3ODQ2TTg5");
+
+        xhr.setRequestHeader("authorization", "Basic c29oYWlsQHYtbGlua25ldHdvcmsuY29tOnBhc3N3b3JkMjAxOA==");
+        
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.setRequestHeader("accept", "application/json");
+
+        xhr.send(data);
+
+    });
+</script>

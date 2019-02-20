@@ -1,0 +1,64 @@
+﻿@model AuthenticationTest.Models.tbl_roles
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>
+    Create
+</h2>
+<link href="~/Content/chosen.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>tbl_roles</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.role_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.role_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.role_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Select Permissions", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="PermissionSelect" name="PermissionSelect" data-placeholder="Choose permission(s)..." class="form-control chosen-select" multiple>
+                    <option value=""></option>
+
+                    @foreach (var item in ViewBag.Permissions)
+                    {
+                        <option value="@item.Action_Id">@item.Action_Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts{
+
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#PermissionSelect").chosen();
+        });
+
+    </script>
+
+}
